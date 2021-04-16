@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="WEB-INF/template/master.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid
+                        style="position: relative; margin-bottom: 100px; margin-top: 20px; margin-left: 200px; margin-right: 100px;"
+                        
+                        id ="RegisterGrid"
+                        columns="3">   
+                        
+                        <h:outputLabel  
+                            for="nachname"
+                            style="margin: 20px;" 
+                            value="Nachname: " 
+                            styleClass="h5"/>
+                        <h:inputText  
+                            id="nachname" 
+                            value="#{registerBean.nachname}"
+                            required="true" 
+                            requiredMessage="Nachname erforderlich!"
+                            styleClass="form-control"
+                            p:placeholder="Mustermann"
+                            validator="#{registerBean.validateNachname}"
+                            style="margin: 5px;width: 200px;height: 25px;"/>
+                        <h:message 
+                            for="nachname" 
+                            style="color: crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning"/>
+                        
+                        <h:outputLabel  
+                            for="vorname"
+                            style="margin: 20px;" 
+                            value="Vorname: " 
+                            styleClass="h5"/>
+                        <h:inputText  
+                            id="vorname" 
+                            value="#{registerBean.vorname}"
+                            required="true" 
+                            requiredMessage="Vorname erforderlich!"
+                            styleClass="form-control"
+                            style="margin: 5px;width: 200px;height: 25px;" 
+                            validatorMessage="3-24 Buchstaben, 1. Großbuchstabe gefolgt von Kleinbuchstaben"
+                            p:placeholder="Max">
+                            <f:validateRegex pattern="[A-Z]{1}[a-z]{2,24}" for="vorname"/>
+                        </h:inputText>
+                        <h:message 
+                            for="vorname" 
+                            style="color:  crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning"/>
+                        
+                        <h:outputLabel  
+                            for="telefonNummer"
+                            style="margin: 20px;" 
+                            value="Telefonnummer: " 
+                            styleClass="h5"/>
+                        <h:inputText  
+                            id="telefonNummer" 
+                            value="#{registerBean.telNummer}"
+                            required="true" 
+                            requiredMessage="Telefonnummer erforderlich!"
+                            styleClass="form-control"
+                            style="margin: 5px;width: 200px;height: 25px;"
+                            validator="#{registerBean.validateTelnummer}"
+                            p:placeholder="01577...">
+                        </h:inputText>
+                        <h:message 
+                            for="telefonNummer" 
+                            style="color:  crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning"/>
+                        
+                        <h:outputLabel  
+                            for="email"
+                            style="margin: 20px;" 
+                            value="Email-Adresse: " 
+                            styleClass="h5"/>
+                        <h:inputText  
+                            id="email" 
+                            value="#{registerBean.email}"
+                            styleClass="form-control"
+                            style="margin: 5px;width: 200px;height: 25px;"
+                            p:placeholder="max_musterman@mustermail.de">
+                            <f:validator validatorId="validatorEmail"/>
+                        </h:inputText>
+                        <h:message 
+                            for="email" 
+                            style="color:  crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning"/>
+                        
+                        <h:outputLabel  
+                            for="benutzername"
+                            style="margin: 20px;" 
+                            value="Benutzername: " 
+                            styleClass="h5"/>
+                        <h:inputText  
+                            id="benutzername" 
+                            value="#{registerBean.benutzername}"
+                            required="true" 
+                            requiredMessage="Benutzername erforderlich!"
+                            styleClass="form-control"
+                            style="margin: 5px;width: 200px;height: 25px;"
+                            validatorMessage="Mindestens 3 Zeichen, beginnend mit Buchstabe oder _"
+                            p:placeholder="Username">
+                            <f:validateRegex pattern="^(?i:[A-Z_][\w_-]{2,})$" for="Login-name"/>
+                        </h:inputText>
+                        <h:message 
+                            for="benutzername" 
+                            style="color:  crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning"/>
+                        
+                        <h:outputLabel
+                            for="passwort"
+                            style="margin: 20px;"
+                            value="Passwort: "
+                            styleClass="h5"/>
+                        <h:inputSecret  
+                            id="passwort" 
+                            value="#{registerBean.passwort}"
+                            style="margin: 5px;width: 200px;height: 25px;"
+                            styleClass="form-control" 
+                            redisplay="false"
+                            required="true" 
+                            requiredMessage="Passwort erforderlich!"
+                            p:placeholder="*****">
+                            <f:validator validatorId="validatorPassword"/>
+                        </h:inputSecret>
+                        <h:message 
+                            for="passwort" 
+                            style="color:  crimson; margin-left: 10px;" 
+                            fatalStyle="false"
+                            styleClass="text-warning" >
+                        </h:message>
+                        
+                        <h:outputLabel style="margin-left: 20px;"/>
+                        
+                        <h:commandButton
+                            class="btn btn-primary"
+                            value="Registrieren"
+                            action="#{registerBean.register()}"
+                            style="margin: 5px;">
+                            <f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="WEB-INF/template/master.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:outputLabel style="margin: 5px" styleClass="h1" value="Vielen Dank!"/>
+                    <br/>
+                    <h:outputLabel style="margin: 5px" styleClass="h5" value="Film/e wurden bestellt und wird/werden in kürze geschickt"/>
+                    <br/>
+                    <h:commandButton class="btn btn-primary" action="index.xhtml" value="Zurück zum Start."/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+    Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+        <ui:composition>
+        <div style="overflow-y: auto; height: 70%; width: 70%; position: relative; margin: 0px auto">
+            <h:form >
+              <div>
+                  <h:outputLabel value = "Willkommen #{loginBean.benutzername}"/>         
+              </div>
+            <h:commandButton action="#{loginBean.logout()}" class="btn btn-primary" style="margin-top: 5px" value = "Abmelden"/>
+            </h:form>
+        </div> 
+        </ui:composition>
+    </h:body>
+</html>
+
